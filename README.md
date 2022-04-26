@@ -116,3 +116,26 @@ Now we had our pipeline with two steps build and test. we will add docker build 
 2- we set the credentials as secret in jenkins UI. Go project dashboard > Credentials > Add credentials .
 
 ![](./img/jenkins_7.png)
+
+Then we update the jenkinsfile to add the build/push image to regitery . ( check the jenkinsfile)
+
+![](./img/jenkins_8.png)
+
+### Step 5
+
+To repect the build process we want to restrict the docker part only for the main branch . For this purpose we will create and add the condition in the Jenkinfile for docker part. (check the jenkinsfile).
+
+```
+when {
+  branch 'main'
+}
+```
+
+and let's create an other branch
+
+```
+git checkouot -b feat/test
+git push origin feat/test
+```
+
+now let's rescan the pipeline branches.
