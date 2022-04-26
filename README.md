@@ -70,3 +70,31 @@ Now everything is setup for our lab.
 ## Project setup: springboot
 
 For our project, we will generate a springboot project using: https://start.spring.io/
+
+### Step 1:
+
+First we will extract the generated project in our project folder. Then we will create a github repo and push the our source code to the version controller.
+
+```
+git init
+git add .
+git remote add origin git@github.com:XXXXXXX
+git branch -M main
+git push -u origin main
+
+```
+
+### Step 2:
+
+In this step we will start creating our Jenkinsfile with just an `echo 'hello jenkins'` step.  
+We can create the project using jenkins UI. Go to jenkins Dashboard > new item > chose multibranch pipeline (and give it a name ).
+
+![](./img/jenkins_2.png)
+
+In the project settings we will need to setup for the momenent only **the Branch Sources** part with our github repo url.
+
+![](./img/jenkins_3.png)
+
+### Step 3
+
+Now everything is setup for jenkins, we will create our `Jenkinsfile`
