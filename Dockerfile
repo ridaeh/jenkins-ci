@@ -1,4 +1,4 @@
-FROM rsunix/yourkit-openjdk17
+FROM openjdk:17.0.2-jdk-slim
 
 COPY target/*.jar app.jar
 
