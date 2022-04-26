@@ -103,3 +103,16 @@ Now everything is setup for jenkins, we will create our `Jenkinsfile` and push i
 
 As we can see for the moment we have only one branch
 ![](./img/jenkins_5.png)
+
+To see the build status we can click on the branch name
+
+![](./img/jenkins_6.png)
+
+### Step 4
+
+Now we had our pipeline with two steps build and test. we will add docker build step to build and push image to the docker hub
+
+1- We create an account in the docker hub
+2- we set the credentials as secret in jenkins UI. Go project dashboard > Credentials > Add credentials .
+
+![](./img/jenkins_7.png)
