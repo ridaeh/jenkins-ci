@@ -97,4 +97,9 @@ In the project settings we will need to setup for the momenent only **the Branch
 
 ### Step 3
 
-Now everything is setup for jenkins, we will create our `Jenkinsfile`
+Now everything is setup for jenkins, we will create our `Jenkinsfile` and push it to github. Next we will click on `Scan multibranch pipeline now`
+
+![](./img/jenkins_4.png)
+
+As we can see for the moment we have only one branch
+![](./img/jenkins_5.png)
