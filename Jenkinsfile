@@ -48,7 +48,7 @@ pipeline {
             steps {
                 echo 'running docker project...'
                 sh 'docker rmi therealayukjunior/jenkins-demo:latest'
-                sh "docker run --name my-app therealayukjunior/jenkins-demo:latest -d "
+                sh "docker run --name my-app -d therealayukjunior/jenkins-demo:latest"
                 sh "docker ps"
                 sh "docker stop my-app"
                 sh 'docker rm my-app'
