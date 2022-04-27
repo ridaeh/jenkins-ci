@@ -138,4 +138,18 @@ git checkouot -b feat/test
 git push origin feat/test
 ```
 
-now let's rescan the pipeline branches.
+now let's rescan the pipeline branches. jenkins has detect the new branch as shown below.
+
+![](./img/jenkins_9.png)
+
+and only the build and testing part of springboot has been executed.
+
+![](./img/jenkins_10.png)
+
+### Final Step: Deploying to server
+
+For this step we will need a server with an installed docker and ssh key.
+
+For the deployment, we will invoke the `deploy.sh` from jenkins, it will be executed in the server using ssh connection. The script will pull the latest image from docker artifactory, stops the container if it is already working and runs it with latest version.
+
+We will need to add the SSH key as text credentials (like we did in the step 4 with `remote_key` as credentials name).

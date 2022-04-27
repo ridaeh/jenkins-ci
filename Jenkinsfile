@@ -5,7 +5,10 @@ pipeline {
     }
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('dockerhub-cred')
-	}
+        REMOTE_KEY= credentials('remote_key')
+        REMOTE_USER='user'
+        REMOTE_HOST='10.0.0.1'
+	}   
 
     stages {
         stage("build project") {
@@ -44,10 +47,28 @@ pipeline {
             }
             steps {
                 echo 'running docker project...'
+                sh 'docker rmi therealayukjunior/jenkins-demo:latest'
                 sh "docker run --name my-app therealayukjunior/jenkins-demo:latest -d "
                 sh "docker ps"
                 sh "docker stop my-app"
+                sh 'docker rm my-app'
             }
+        }
+
+        stage ('Deploy') {
+         when {
+            branch 'main' 
+         }
+        steps {
+            sh 'mkdir ~/.ssh'
+            sh 'echo "$REMOTE_KEY" > ~/.ssh/my_server_key'
+            sh 'chmod 600 ~/.ssh/my_server_key'
+            sh 'scp -e "ssh -i ~/.ssh/my_server_key -o StrictHostKeyChecking=no" deploy.sh ${REMOTE_USER}@${REMOTE_HOST}:~/'
+            sh 'ssh -i ~/.ssh/my_server_key -o StrictHostKeyChecking=n ${REMOTE_USER}@${REMOTE_HOST} "chmod +x deploy.sh"'
+            sh 'ssh -i ~/.ssh/my_server_key -o StrictHostKeyChecking=n ${REMOTE_USER}@${REMOTE_HOST} ./deploy.ssh'
+        }
         }
     }
 }
+
+
